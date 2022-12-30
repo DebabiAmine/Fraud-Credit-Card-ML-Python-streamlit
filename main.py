@@ -24,6 +24,8 @@ def main():
     # Affichage la table de données
     df = load_data()
     df_sample = df.sample(100)
+    y = df['Class']
+    X = df.drop('Class', axis = 1)
     if st.sidebar.checkbox("Afficher lesDonnees brutes", False):
         st.subheader("jeu de données 'creditcard' : Echantillon de 100 observations ")
         st.write(df_sample)
@@ -44,19 +46,16 @@ def main():
     seed = 123
 
     #train/test Split
-    @st.cache(persist=True)
-    def split(df):
-        y = df['Class']
-        X = df.drop('Class', axis = 1)
-        X_train, X_test, y_train, y_test=train_test_split(
-            X, y,
+
+    y = df['Class']
+    X = df.drop('Class', axis = 1)
+    X_train, X_test, y_train, y_test=train_test_split(
+        X, y,
             test_size=0.2,
             stratify=y,
             random_state=seed
         )
-        return X_train, X_test, y_train, y_test
 
-    X_train, X_test, y_train, y_test = split(df)
 
 
     class_names=['T.Authentique','T.Frauduleuse']
