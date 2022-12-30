@@ -17,7 +17,7 @@ def main():
     st.title("application de Machine Learning pour la detection de Fraude par carte de credit ")
     st.subheader("Auteur : Mohamed Amine Debabi")
     #fonction d'importation des données
-    #@st.cache(persist=True) #enregistre les données sans reexcuter la data
+    @st.cache(persist=True) #enregistre les données sans reexcuter la data
     def load_data():
         data = pd.read_csv('creditcard.csv')
         return data
@@ -44,19 +44,19 @@ def main():
     seed = 123
 
     #train/test Split
-   
-   
-    y = df['Class']
-    X = df.drop('Class', axis = 1)
-    X_train, X_test, y_train, y_test=train_test_split(
+    @st.cache(persist=True)
+    def split(df):
+        y = df['Class']
+        X = df.drop('Class', axis = 1)
+        X_train, X_test, y_train, y_test=train_test_split(
             X, y,
             test_size=0.2,
             stratify=y,
             random_state=seed
-       )
-       
+        )
+        return X_train, X_test, y_train, y_test
 
-    
+    X_train, X_test, y_train, y_test = split(df)
 
 
     class_names=['T.Authentique','T.Frauduleuse']
