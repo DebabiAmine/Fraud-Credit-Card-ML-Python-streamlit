@@ -17,7 +17,7 @@ def main():
     st.title("application de Machine Learning pour la detection de Fraude par carte de credit ")
     st.subheader("Auteur : Mohamed Amine Debabi")
     #fonction d'importation des données
-    @st.cache(persist=True) #enregistre les données sans reexcuter la data
+    #@st.cache(persist=True) #enregistre les données sans reexcuter la data
     def load_data():
         data = pd.read_csv('creditcard.csv')
         return data
