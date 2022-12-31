@@ -15,7 +15,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 def main():
     st.title("application de Machine Learning pour la detection de Fraude par carte de credit ")
-    st.subheader("Auteur : Mohamed Amine Debabi")
+    st.subheader("Auteur :Amine Debabi")
     #fonction d'importation des données
     @st.cache(persist=True) #enregistre les données sans reexcuter la data
     def load_data():
