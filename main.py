@@ -24,7 +24,7 @@ def main():
     # Affichage la table de données
     df = load_data()
     df_sample = df.sample(100)
-
+    y = df['Class']
     X = df.drop('Class', axis = 1)
     if st.sidebar.checkbox("Afficher lesDonnees brutes", False):
         st.subheader("jeu de données 'creditcard' : Echantillon de 100 observations ")
@@ -50,9 +50,9 @@ def main():
     y = df['Class']
     X = df.drop('Class', axis = 1)
     X_train, X_test, y_train, y_test=train_test_split(
-        X, df['Class'],
+        X, y,
             test_size=0.2,
-            stratify=df['Class'],
+            stratify=y,
             random_state=seed
         )
 
